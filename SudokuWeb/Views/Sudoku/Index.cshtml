@@ -1,0 +1,89 @@
+﻿@model SudokuBasis.Sudoku
+@{
+    ViewBag.Title = "Sudoku";
+}
+
+
+<div class="jumbotron">
+    <h1 style="text-align:center">@ViewBag.Title</h1>
+</div>
+
+
+    @if (ViewBag.Hint != null)
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-warning">
+                    <div class="panel-heading">Hint</div>
+                    <div class="panel-body">
+                        <p>@ViewBag.Hint</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+       
+
+<div class="row">
+    <div class="col-md-6">
+
+        <table id="board" class="center-table">
+            @{int i = 0;}
+            @for (short y=1; y < 10; y++)
+            {
+                <tr style="@if (y==3 || y == 6) { <text>border-bottom:solid 3px #000000;</text> } ">
+
+                    @for (short x = 1; x < 10; x++)
+                    {
+                        <td style="@if (x == 3 || x == 6) { <text>border-right:solid 3px #000000;</text> } ">
+                        <div style="@if (((List<int>)Session["UnadaptableIndexes"]).Contains(i)) { <text>font-weight: bold;</text>} ">
+                            @{ short test = @Model.Get(x, y); }
+                                @if (test.Equals(0))
+                                {
+                                    <text></text>
+                                }
+                                else
+                                {
+                                    @test
+                                }
+
+                        </div>
+                        </td>
+                       i++;
+                    }
+                </tr>
+            }
+
+        </table>
+        </div>
+    <div class="col-md-6">
+        
+        <div class="panel panel-primary">
+            <div class="panel-heading">Speel</div>
+            <div class="panel-body">
+                <div class="col-lg-6">
+                    <form method="POST" action="@Url.Action("PlaceNumber", "Sudoku")">
+                        <input class="form-control" placeholder="xPos" name="numX" type="number" min="1" max="9" required />
+                        <input class="form-control" placeholder="yPos" name="numY" type="number" min="1" max="9" required />
+                        <input class="form-control" placeholder="Value" name="num" type="number" min="1" max="9" required />
+                        <button type="submit" class="btn btn-primary">Invullen</button>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <form action="@Url.Action("NewGame", "Sudoku")" method="get">
+                        <input type="submit" class="btn btn-info" style="width:100px;" value="Nieuw Spel" />
+                    </form>
+
+                    <form action="@Url.Action("Cheat", "Sudoku")" method="get">
+                        <input type="submit" class="btn btn-danger"  style="width:100px;"  value="Cheat" />
+                    </form>
+
+                    <form action="@Url.Action("Hint", "Sudoku")" method="get">
+                        <input type="submit" class="btn btn-warning"  style="width:100px;"  value="Hint" />
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>  

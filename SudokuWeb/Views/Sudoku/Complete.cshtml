@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Complete";
+}
+<div class="jumbotron">
+    <h1 style="text-align:center">Sudoku</h1>
+</div>
+
+<div class="panel panel-success">
+    <div class="panel-heading">
+        Gefeliciteerd!
+    </div>
+    <div class="panel-body">
+        <p>
+            Je hebt de Sudoku opgelost, @Html.ActionLink("Nog een keer spelen?", "NewGame", new { }, null)
+        </p>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+﻿body {
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    border-left: solid 2px #000000;
+    border-right: solid 2px #000000;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.center-table
+{
+  margin: 0 auto !important;
+  float: none !important;
+}
+
+#board tr td{
+    border:solid 1px #000000;
+    vertical-align: middle;
+    text-align: center;
+    height:50px; 
+    width:50px;
+}
+
+input{
+    margin:5px;
+}
